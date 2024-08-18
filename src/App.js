@@ -3,29 +3,30 @@ import './App.css';
 
 function SearchPage() {
   
-  const colors = [
-    '#538392', '#6295A2', '#80B9AD', '#B3E2A7',
-    'rgb(83, 131, 146)', 'rgb(98, 149, 162)', 'rgb(128, 185, 173)', 'rgb(179, 226, 167)'
-  ];
+    const colors = [
+      '#538392', '#6295A2', '#80B9AD', '#B3E2A7',
+      'rgb(83, 131, 146)', 'rgb(98, 149, 162)', 'rgb(128, 185, 173)', 'rgb(179, 226, 167)'
+    ];
 
-  const [labels, setLabels] = useState([]);
-  const [summary, setSummary] = useState('Lorem ipsum dolor sit amet...');
-  const [url, setUrl] = useState('');
+    const [labels, setLabels] = useState([]);
+    const [summary, setSummary] = useState('Lorem ipsum dolor sit amet...');
+    const [url, setUrl] = useState('');
 
-  const labelsData = [
-    {text: 'Technology'},
-    {text: 'Business'},
-    {text: 'Health'},
-  ];
+    const labelsData = [
+      {text: 'Technology'},
+      {text: 'Business'},
+      {text: 'Health'},
+    ];
 
-  useEffect(() => {
-    // Set labels with colors
-    const updatedLabels = labelsData.map((label, index) => ({
-      text: label.text,
-      color: colors[index % colors.length] // Rotate through colors
-    }));
-    setLabels(updatedLabels);
-  }, []);
+    useEffect(() => {
+      // Set labels with colors
+      const updatedLabels = labelsData.map((label, index) => ({
+        text: label.text,
+        color: colors[index % colors.length]
+      }));
+      setLabels(updatedLabels);
+    }, [colors, labelsData]); // Include all dependencies
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
