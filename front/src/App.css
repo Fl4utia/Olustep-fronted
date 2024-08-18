@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Nunito:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Stonewash&display=swap');
+
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(135deg, rgba(173, 216, 230, 0.2), rgba(123, 104, 238, 0.2));
+}
+
+h1, h2 {
+  font-family: 'Stonewash', sans-serif;
+}
+
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.data-labels span {
+  color: white;
+}
+
+.data-labels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
