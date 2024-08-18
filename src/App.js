@@ -2,46 +2,53 @@ import { useState, useEffect } from 'react';
 import './App.css'; 
 
 function SearchPage() {
-  
-    const colors = [
-      '#538392', '#6295A2', '#80B9AD', '#B3E2A7',
-      'rgb(83, 131, 146)', 'rgb(98, 149, 162)', 'rgb(128, 185, 173)', 'rgb(179, 226, 167)'
-    ];
+  const colors = [
+    '#538392', '#6295A2', '#80B9AD', '#B3E2A7',
+    'rgb(83, 131, 146)', 'rgb(98, 149, 162)', 'rgb(128, 185, 173)', 'rgb(179, 226, 167)'
+  ];
 
-    const [labels, setLabels] = useState([]);
-    const [summary, setSummary] = useState('Lorem ipsum dolor sit amet...');
-    const [url, setUrl] = useState('');
+  const [labels, setLabels] = useState([]);
+  const [summary, setSummary] = useState('Lorem ipsum dolor sit amet...');
+  const [url, setUrl] = useState('');
 
-    const labelsData = [
-      {text: 'Technology'},
-      {text: 'Business'},
-      {text: 'Health'},
-    ];
+  const labelsData = [
+    {text: 'Technology'},
+    {text: 'Business'},
+    {text: 'Health'},
+  ];
 
-    useEffect(() => {
-      // Set labels with colors
-      const updatedLabels = labelsData.map((label, index) => ({
-        text: label.text,
-        color: colors[index % colors.length]
-      }));
-      setLabels(updatedLabels);
-    }, [colors, labelsData]); // Include all dependencies
-  }
+  useEffect(() => {
+    // Set labels with colors
+    const updatedLabels = labelsData.map((label, index) => ({
+      text: label.text,
+      color: colors[index % colors.length]
+    }));
+    setLabels(updatedLabels);
+  }, [colors, labelsData]); // Include dependencies
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ url }),
-    });
+    try {
+      const response = await fetch('YOUR_BACKEND_URL_HERE', { // Replace with your backend URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url }),
+      });
 
-    const data = await response.json();
-    setSummary(data.summary);
-    setLabels(data.labels);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      setSummary(data.summary);
+      setLabels(data.labels);
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+      // Handle errors appropriately
+    }
   };
 
   return (
