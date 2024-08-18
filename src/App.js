@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css'; 
 
 function SearchPage() {
+  
   const colors = [
     '#538392', '#6295A2', '#80B9AD', '#B3E2A7',
     'rgb(83, 131, 146)', 'rgb(98, 149, 162)', 'rgb(128, 185, 173)', 'rgb(179, 226, 167)'
